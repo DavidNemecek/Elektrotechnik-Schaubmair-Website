@@ -420,6 +420,15 @@ button:focus-visible {
   background: #fff;
 }
 
+.project-gallery .span-all {
+  grid-column: 1 / -1;
+}
+
+.project-gallery a {
+  display: block;
+  text-decoration: none;
+}
+
 .project-gallery img {
   width: 100%;
   height: auto;
