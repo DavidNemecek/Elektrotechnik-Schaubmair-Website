@@ -23,11 +23,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-        with:
-          ref: ${{ github.event_name == 'workflow_dispatch' && 'deploy' || github.ref }}
 
       - name: Configure Pages
         uses: actions/configure-pages@v6
+        if: github.ref == 'refs/heads/deploy'
 
       - name: Prepare site
         shell: bash
@@ -46,11 +45,13 @@ jobs:
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
+        if: github.ref == 'refs/heads/deploy'
         with:
           path: _site
 
   deploy:
     needs: build
+    if: github.ref == 'refs/heads/deploy'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
