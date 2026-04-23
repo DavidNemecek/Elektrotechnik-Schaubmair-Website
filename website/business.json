@@ -1,0 +1,19 @@
+{
+  "name": "Elektrotechnik Schaubmair",
+  "phone": "",
+  "email": "",
+  "address": {
+    "street": "Oidener Straße 38",
+    "postalCode": "4030",
+    "city": "Linz",
+    "country": "AT"
+  },
+  "uid": "ATU78748768",
+  "gisa": "35443032",
+  "maps": {
+    "shortUrl": "https://maps.app.goo.gl/7GUSco1R2gt1MWUM6",
+    "embedQuery": "Oidener Straße 38, 4030 Linz"
+  },
+  "notes": "TODO: Daten aus Google Maps übernehmen (Telefon, E-Mail, Öffnungszeiten etc.)."
+}
+
