@@ -1,2 +1,24 @@
 # Elektrotechnik-Schaubmair-Website
-Website für Elektrotechnik Schaubmair - Der freundliche Elektriker in der Nachberschaft
+
+Statische Website für **Elektrotechnik Schaubmair** (GitHub Pages).
+
+## Inhalte pflegen
+
+- Startseite: `website/index.html`
+- Impressum: `website/impressum.html`
+- Datenschutz: `website/datenschutz.html`
+- Kontaktdaten (zentral): `website/business.json` (TODO: Telefon/E‑Mail aus Google Maps ergänzen)
+- Projektbilder: `images/` (werden nach `/_site/images/` kopiert)
+
+## Deployment
+
+Der GitHub Actions Workflow `.github/workflows/deploy-pages.yml` baut aus `website/` die Pages‑Site
+und kopiert `images/` nach `images/` im Output.
+
+## Lokal ansehen
+
+Da `website/` im Deployment nach `_site/` kopiert wird (und `images/` daneben liegt), ist der
+einfachste lokale Preview:
+
+- Build: `powershell -ExecutionPolicy Bypass -File scripts/build-local.ps1`
+- Serve: `powershell -ExecutionPolicy Bypass -File scripts/serve-local.ps1`
