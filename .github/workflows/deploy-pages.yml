@@ -35,13 +35,13 @@ jobs:
           touch dist/.nojekyll
           if [ ! -s dist/index.html ]; then
             cat > dist/index.html <<'EOF'
-            <!doctype html>
-            <meta charset="utf-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <title>Deployment Error</title>
-            <h1>Deployment Error</h1>
-            <p><code>website/index.html</code> is missing or empty.</p>
-            EOF
+<!doctype html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Deployment Error</title>
+<h1>Deployment Error</h1>
+<p><code>website/index.html</code> is missing or empty.</p>
+EOF
           fi
 
       - name: Upload artifact
