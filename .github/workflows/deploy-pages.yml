@@ -1,9 +1,9 @@
-name: Deploy to GitHub Pages
+name: Deploy GitHub Pages
 
 on:
   push:
-    branches:
-      - deploy
+    branches: ["deploy"]
+  workflow_dispatch:
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -18,20 +18,43 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event_name == 'workflow_dispatch' && 'deploy' || github.ref }}
 
       - name: Configure Pages
-        uses: actions/configure-pages@v6.0.0
+        uses: actions/configure-pages@v6
+
+      - name: Prepare site
+        shell: bash
+        run: |
+          rm -rf _site
+          mkdir -p _site
+          if [ ! -d website ]; then
+            echo "Expected ./website directory to exist"
+            exit 1
+          fi
+          cp -a website/. _site/
+          if [ -d images ]; then
+            mkdir -p _site/images
+            cp -a images/. _site/images/ || true
+          fi
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v5.0.0
+        uses: actions/upload-pages-artifact@v5
         with:
-          path: website
+          path: _site
 
-      - name: Deploy
-        id: deployment
-        uses: actions/deploy-pages@v5.0.0
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
