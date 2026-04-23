@@ -422,8 +422,9 @@ button:focus-visible {
 
 .project-gallery img {
   width: 100%;
-  height: 240px;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
+  background: #fff;
 }
 
 .project-gallery figcaption {

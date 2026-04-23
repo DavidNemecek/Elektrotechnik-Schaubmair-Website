@@ -5,6 +5,12 @@ function formatTelHref(phoneNumberRaw) {
   return cleaned ? `tel:${cleaned}` : null;
 }
 
+function formatMailtoHref(emailRaw) {
+  const cleaned = String(emailRaw || "").trim();
+  if (!cleaned || !cleaned.includes("@")) return null;
+  return `mailto:${cleaned}`;
+}
+
 async function loadBusinessConfig() {
   try {
     const res = await fetch("business.json", { cache: "no-store" });
@@ -55,11 +61,27 @@ function initPhoneLinks() {
   }
 }
 
+function initEmailLinks() {
+  const email = window.__BUSINESS__?.email || "";
+  const href = formatMailtoHref(email);
+  for (const a of document.querySelectorAll("[data-email-link]")) {
+    if (href) {
+      a.href = href;
+      a.textContent = a.textContent.includes("TODO") ? email : a.textContent;
+      a.classList.remove("is-todo");
+    } else {
+      a.href = "impressum.html";
+      a.classList.add("is-todo");
+    }
+  }
+}
+
 async function init() {
   window.__BUSINESS__ = (await loadBusinessConfig()) || {};
   initCurrentYear();
   initProjectAccordions();
   initPhoneLinks();
+  initEmailLinks();
 }
 
 init();
