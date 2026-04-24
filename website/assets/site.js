@@ -28,19 +28,117 @@ function initCurrentYear() {
 }
 
 function initProjectAccordions() {
-  const items = document.querySelectorAll("[data-project]");
-  for (const item of items) {
+  const items = Array.from(document.querySelectorAll("[data-project]"));
+  let openItem = null;
+  const prefersReducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+
+  function getParts(item) {
     const toggle = item.querySelector("[data-project-toggle]");
     const body = item.querySelector("[data-project-body]");
-    if (!toggle || !body) continue;
+    return toggle && body ? { toggle, body } : null;
+  }
+
+  function stopOngoingAnimation(body) {
+    const onEnd = body.__accordionOnEnd;
+    if (typeof onEnd === "function") {
+      body.removeEventListener("transitionend", onEnd);
+      body.removeEventListener("transitioncancel", onEnd);
+      body.__accordionOnEnd = null;
+    }
+  }
+
+  function closeItem(item) {
+    const parts = getParts(item);
+    if (!parts) return;
+    const { toggle, body } = parts;
+
+    const isOpen = toggle.getAttribute("aria-expanded") === "true";
+    if (!isOpen && body.hidden) return;
+
+    stopOngoingAnimation(body);
+    toggle.setAttribute("aria-expanded", "false");
+    if (openItem === item) openItem = null;
+
+    if (prefersReducedMotion) {
+      body.dataset.accordionState = "closed";
+      body.style.height = "";
+      body.hidden = true;
+      return;
+    }
+
+    body.hidden = false;
+    body.dataset.accordionState = "closed";
+
+    // From current height to 0.
+    body.style.height = `${body.scrollHeight}px`;
+    // Force reflow so the start height is applied before transitioning.
+    body.getBoundingClientRect();
+    body.style.height = "0px";
+
+    const onEnd = (ev) => {
+      if (ev.propertyName !== "height") return;
+      stopOngoingAnimation(body);
+      body.style.height = "";
+      body.hidden = true;
+    };
+    body.__accordionOnEnd = onEnd;
+    body.addEventListener("transitionend", onEnd);
+    body.addEventListener("transitioncancel", onEnd);
+  }
+
+  function openItemExclusive(item) {
+    const parts = getParts(item);
+    if (!parts) return;
+    const { toggle, body } = parts;
+
+    const isOpen = toggle.getAttribute("aria-expanded") === "true";
+    if (isOpen && !body.hidden) return;
+
+    if (openItem && openItem !== item) closeItem(openItem);
+
+    stopOngoingAnimation(body);
+    toggle.setAttribute("aria-expanded", "true");
+    openItem = item;
+
+    if (prefersReducedMotion) {
+      body.hidden = false;
+      body.dataset.accordionState = "open";
+      body.style.height = "";
+      return;
+    }
+
+    body.hidden = false;
+    body.dataset.accordionState = "open";
+
+    // From 0 to content height.
+    body.style.height = "0px";
+    body.getBoundingClientRect();
+    body.style.height = `${body.scrollHeight}px`;
+
+    const onEnd = (ev) => {
+      if (ev.propertyName !== "height") return;
+      stopOngoingAnimation(body);
+      body.style.height = "auto";
+    };
+    body.__accordionOnEnd = onEnd;
+    body.addEventListener("transitionend", onEnd);
+    body.addEventListener("transitioncancel", onEnd);
+  }
+
+  for (const item of items) {
+    const parts = getParts(item);
+    if (!parts) continue;
+    const { toggle, body } = parts;
 
     toggle.setAttribute("aria-expanded", "false");
+    body.dataset.accordionState = "closed";
     body.hidden = true;
+    body.style.height = "";
 
     toggle.addEventListener("click", () => {
       const isOpen = toggle.getAttribute("aria-expanded") === "true";
-      toggle.setAttribute("aria-expanded", String(!isOpen));
-      body.hidden = isOpen;
+      if (isOpen) closeItem(item);
+      else openItemExclusive(item);
     });
   }
 }
