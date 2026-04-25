@@ -590,6 +590,11 @@ button:focus-visible {
     grid-template-columns: 1fr;
     gap: 6px;
   }
+  .contact-list li {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    align-items: start;
+  }
   .project-head {
     grid-template-columns: 44px 1fr;
   }
