@@ -174,9 +174,24 @@ function initEmailLinks() {
   }
 }
 
+function initTodoVisibility() {
+  const isLocal =
+    window.location.protocol === "file:" ||
+    window.location.hostname === "localhost" ||
+    window.location.hostname === "127.0.0.1" ||
+    window.location.hostname === "[::1]";
+
+  document.documentElement.classList.toggle("show-todos", isLocal);
+
+  for (const el of document.querySelectorAll(".todo")) {
+    el.hidden = !isLocal;
+  }
+}
+
 async function init() {
   window.__BUSINESS__ = (await loadBusinessConfig()) || {};
   initCurrentYear();
+  initTodoVisibility();
   initProjectAccordions();
   initPhoneLinks();
   initEmailLinks();
