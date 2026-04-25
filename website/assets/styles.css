@@ -586,6 +586,10 @@ button:focus-visible {
   .cards {
     grid-template-columns: 1fr;
   }
+  .kv > div {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
   .project-head {
     grid-template-columns: 44px 1fr;
   }
