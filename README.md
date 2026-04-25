@@ -22,3 +22,9 @@ einfachste lokale Preview:
 
 - Build: `powershell -ExecutionPolicy Bypass -File scripts/build-local.ps1`
 - Serve: `powershell -ExecutionPolicy Bypass -File scripts/serve-local.ps1`
+
+## TODOs:
+
+Diese müssen wie angelegt werden:
+
+`<span class="muted todo" hidden>TODO: Text/Details anpassen (z. B. FI/LS, Reserveplätze).</span>`
