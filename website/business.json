@@ -13,7 +13,6 @@
   "maps": {
     "shortUrl": "https://maps.app.goo.gl/7GUSco1R2gt1MWUM6",
     "embedQuery": "Oidener Straße 38, 4030 Linz"
-  },
-  "notes": "TODO: Daten aus Google Maps übernehmen (Telefon, E-Mail, Öffnungszeiten etc.)."
+  }
 }
 

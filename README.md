@@ -7,7 +7,7 @@ Statische Website für **Elektrotechnik Schaubmair** (GitHub Pages).
 - Startseite: `website/index.html`
 - Impressum: `website/impressum.html`
 - Datenschutz: `website/datenschutz.html`
-- Kontaktdaten (zentral): `website/business.json` (TODO: Telefon/E‑Mail aus Google Maps ergänzen)
+- Kontaktdaten (zentral): `website/business.json`
 - Projektbilder: `images/` (werden nach `/_site/images/` kopiert)
 
 ## Deployment
