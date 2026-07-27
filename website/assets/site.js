@@ -143,6 +143,36 @@ function initProjectAccordions() {
   }
 }
 
+function initNavToggle() {
+  const toggle = document.querySelector("[data-nav-toggle]");
+  const nav = document.getElementById("primary-nav");
+  if (!toggle || !nav) return;
+
+  function closeNav() {
+    nav.classList.remove("is-open");
+    toggle.setAttribute("aria-expanded", "false");
+  }
+
+  toggle.addEventListener("click", () => {
+    const isOpen = nav.classList.toggle("is-open");
+    toggle.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  nav.addEventListener("click", (ev) => {
+    if (ev.target.closest("a")) closeNav();
+  });
+
+  document.addEventListener("click", (ev) => {
+    if (!nav.classList.contains("is-open")) return;
+    if (nav.contains(ev.target) || toggle.contains(ev.target)) return;
+    closeNav();
+  });
+
+  document.addEventListener("keydown", (ev) => {
+    if (ev.key === "Escape") closeNav();
+  });
+}
+
 function initPhoneLinks() {
   // Wird in init() mit business.phone befüllt.
   const phone = window.__BUSINESS__?.phone || "";
@@ -193,6 +223,7 @@ async function init() {
   initCurrentYear();
   initTodoVisibility();
   initProjectAccordions();
+  initNavToggle();
   initPhoneLinks();
   initEmailLinks();
 }

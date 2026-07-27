@@ -8,6 +8,7 @@
       content="Elektrotechnik Schaubmair – Elektroinstallationen, Überprüfung & Abnahme nach ÖVE/ÖNORM, Netzwerktechnik, Beleuchtung und Störungsdienst in Linz und Umgebung."
     />
     <title>Elektrotechnik Schaubmair | Der freundliche Elektriker in der Nachbarschaft</title>
+    <link rel="canonical" href="https://elektrotechnik.schaubmair.at/" />
 
     <meta name="theme-color" content="#EBC739" />
     <meta property="og:title" content="Elektrotechnik Schaubmair" />
@@ -16,6 +17,16 @@
       content="Elektroinstallationen, Überprüfung & Abnahme nach ÖVE/ÖNORM, Netzwerktechnik, Beleuchtung und Störungsdienst."
     />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://elektrotechnik.schaubmair.at/" />
+    <meta property="og:image" content="https://elektrotechnik.schaubmair.at/images/Logo.png" />
+    <meta property="og:locale" content="de_AT" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Elektrotechnik Schaubmair" />
+    <meta
+      name="twitter:description"
+      content="Elektroinstallationen, Überprüfung & Abnahme nach ÖVE/ÖNORM, Netzwerktechnik, Beleuchtung und Störungsdienst."
+    />
+    <meta name="twitter:image" content="https://elektrotechnik.schaubmair.at/images/Logo.png" />
 
     <link rel="icon" href="favicon.ico?v=20260423.5" sizes="any" />
     <link rel="icon" href="favicon-32.png?v=20260423.5" type="image/png" sizes="32x32" />
@@ -32,10 +43,10 @@
     <header class="site-header" id="top">
       <div class="container header-inner">
         <a class="brand" href="#top" aria-label="Startseite">
-          <img class="brand-logo" src="images/Logo.png" alt="Elektrotechnik Schaubmair Logo" />
+          <img class="brand-logo" src="images/Logo.png" alt="Elektrotechnik Schaubmair Logo" width="895" height="277" />
         </a>
 
-        <nav class="nav" aria-label="Hauptnavigation">
+        <nav class="nav" id="primary-nav" aria-label="Hauptnavigation">
           <a href="#leistungen">Leistungen</a>
           <a href="#projekte">Projekte</a>
           <a href="#kontakt">Kontakt</a>
@@ -46,6 +57,18 @@
           <a class="btn btn-accent" data-phone-link href="#" aria-label="Jetzt anrufen">
             Anrufen
           </a>
+          <button
+            class="nav-toggle"
+            type="button"
+            data-nav-toggle
+            aria-expanded="false"
+            aria-controls="primary-nav"
+            aria-label="Menü öffnen"
+          >
+            <span class="nav-toggle-bar"></span>
+            <span class="nav-toggle-bar"></span>
+            <span class="nav-toggle-bar"></span>
+          </button>
         </div>
       </div>
     </header>
@@ -120,6 +143,9 @@
 
           <div class="grid cards">
             <article class="card">
+              <span class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z" stroke-linejoin="round"/></svg>
+              </span>
               <h3>Elektroinstallationen</h3>
               <p>
                 Neuinstallationen, Erweiterungen und Sanierungen – sauber dokumentiert und
@@ -127,20 +153,32 @@
               </p>
             </article>
             <article class="card">
+              <span class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M9 12.5 11.5 15 16 9"/><circle cx="12" cy="12" r="9"/></svg>
+              </span>
               <h3>Überprüfung & Abnahme</h3>
               <p>
                 Überprüfung & Abnahme nach ÖVE/ÖNORM E8001 & E8101 (z. B. Gebäude und PV-Anlagen).
               </p>
             </article>
             <article class="card">
+              <span class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>
+              </span>
               <h3>Netzwerktechnik</h3>
               <p>Strukturierte Verkabelung, Patchfelder, Dosen und saubere Messprotokolle.</p>
             </article>
             <article class="card">
+              <span class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.5.4.9 1 1 1.6l.2 1.5h4.6l.2-1.5c.1-.6.5-1.2 1-1.6A6 6 0 0 0 12 3Z"/></svg>
+              </span>
               <h3>Beleuchtung</h3>
               <p>LED-Umrüstung, Lichtkonzepte und effiziente Lösungen für Innen- und Außenbereiche.</p>
             </article>
             <article class="card">
+              <span class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 1-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 1 5.4-5.4L21 6l-3-3-3.3 3.3Z"/></svg>
+              </span>
               <h3>Störungsdienst</h3>
               <p>Schnelle Hilfe bei Ausfällen, Fehlerdiagnose und sichere Wiederinbetriebnahme.</p>
             </article>
@@ -579,8 +617,9 @@
                   >
                 </li>
               </ul>
+            </div>
 
-            <!-- <div class="map card" aria-label="Google Maps Karte">
+            <div class="map card" aria-label="Google Maps Karte">
               <iframe
                 title="Standort Elektrotechnik Schaubmair (Google Maps)"
                 loading="lazy"
@@ -591,7 +630,7 @@
                 Beim Laden der Karte werden Daten an Google übertragen.
                 <a href="datenschutz.html">Mehr dazu</a>.
               </p>
-            </div> -->
+            </div>
           </div>
         </div>
       </section>
@@ -627,6 +666,8 @@
         "@context": "https://schema.org",
         "@type": "Electrician",
         "name": "Elektrotechnik Schaubmair",
+        "image": "https://elektrotechnik.schaubmair.at/images/Logo.png",
+        "logo": "https://elektrotechnik.schaubmair.at/images/Logo.png",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Oidener Straße 38",
@@ -635,8 +676,21 @@
           "addressCountry": "AT"
         },
         "telephone": "+43 676 6601907",
+        "email": "office@schaubmair.at",
         "vatID": "ATU78748768",
-        "url": "https://elektrotechnik.schaubmair.at/"
+        "url": "https://elektrotechnik.schaubmair.at/",
+        "sameAs": ["https://maps.app.goo.gl/7GUSco1R2gt1MWUM6"],
+        "areaServed": {
+          "@type": "City",
+          "name": "Linz und Umgebung"
+        },
+        "makesOffer": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Elektroinstallationen" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Überprüfung & Abnahme nach ÖVE/ÖNORM E8001 & E8101" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Netzwerktechnik" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Beleuchtung" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Störungsdienst" } }
+        ]
       }
     </script>
   </body>
