@@ -285,7 +285,7 @@ button:focus-visible {
 
 .kv > div {
   display: grid;
-  grid-template-columns: minmax(150px, 220px) minmax(0, 1fr);
+  grid-template-columns: max-content minmax(0, 1fr);
   gap: 10px;
   align-items: start;
   padding: 10px 0;
@@ -301,6 +301,16 @@ button:focus-visible {
   overflow-wrap: anywhere;
   word-break: break-word;
   hyphens: auto;
+}
+
+/* Schnellkontakt (hero-card): short, fixed set of labels, so a narrow
+   shared column with right-aligned labels reads cleaner than max-content. */
+.hero-card .kv > div {
+  grid-template-columns: 72px minmax(0, 1fr);
+}
+
+.hero-card .kv dt {
+  text-align: right;
 }
 
 .kv dd {
@@ -680,6 +690,9 @@ button:focus-visible {
   .kv > div {
     grid-template-columns: 1fr;
     gap: 6px;
+  }
+  .hero-card .kv dt {
+    text-align: left;
   }
   .contact-list li {
     grid-template-columns: 1fr;
