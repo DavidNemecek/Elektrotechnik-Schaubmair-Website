@@ -306,6 +306,8 @@ button:focus-visible {
 .kv dd {
   margin: 0;
   min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .card-actions {
@@ -346,7 +348,7 @@ button:focus-visible {
 }
 
 .cards {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
 .card {
@@ -355,6 +357,9 @@ button:focus-visible {
   border-radius: var(--radius);
   padding: 18px;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03);
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .card-icon {
@@ -442,6 +447,9 @@ button:focus-visible {
 .project-title {
   font-weight: 950;
   letter-spacing: -0.2px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .project-meta {
@@ -482,6 +490,8 @@ button:focus-visible {
 
 .project-content p {
   margin: 0 0 12px;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .project-gallery {
@@ -540,6 +550,12 @@ button:focus-visible {
   grid-template-columns: minmax(140px, 220px) minmax(0, 1fr);
   gap: 10px;
   align-items: baseline;
+}
+
+.contact-list li > * {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .label {
